@@ -76,23 +76,17 @@ To run the app on an emulator or physical device, use the following command:
 flutter run
 ```
 ## Screenshots
-![App Screenshot](assets/screenshots/image_1.png)
-![App Screenshot](assets/screenshots/image_2.png)
-![App Screenshot](assets/screenshots/hc3_slide.png)
-![App Screenshot](assets/screenshots/hc3_removed.png)
 
-<table>
 
-  <tr>
-    <td><img src="assets/screenshots/image_1.png" width=270 height=480></td>
-    <td><img src="assets/screenshots/image_2.png" width=270 height=480></td>
-    <td><img src="assets/screenshots/hc3_slide.png)" width=270 height=480></td>
-  </tr>
-  <tr>
-    <td><img src="assets/screenshots/hc3_removed.png" width=270 height=480></td>
-   
-  </tr>
- </table>
+
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40; justify-items: center;">
+  <img src="assets/screenshots/image_1.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
+  <img src="assets/screenshots/image_2.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
+  <img src="assets/screenshots/hc3_slide.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
+  <img src="assets/screenshots/hc3_removed.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
+</div>
+
 
 
 
