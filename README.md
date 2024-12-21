@@ -80,7 +80,7 @@ flutter run
 
 
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: "16px"">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; justify-items: center;">
   <img src="assets/screenshots/image_1.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
   <img src="assets/screenshots/image_2.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
   <img src="assets/screenshots/hc3_slide.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
