@@ -78,19 +78,12 @@ flutter run
 ## Screenshots
 
 
-<table>
-
-  <tr>
-    <td><img src="assets/screenshots/image_1.png" width=300 height=600</td>
-    <td><img src="assets/screenshots/image_2.png" width=300 height=600></td>
-    
-  </tr>
-  <tr>
-    <td><img src="assets/screenshots/hc3_slide.png" width=300 height=600></td>
-    <td><img src="assets/screenshots/hc3_removed.png" width=300 height=600></td>
-   
-  </tr>
- </table>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+  <img src="assets/screenshots/image_1.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
+  <img src="assets/screenshots/image_2.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
+  <img src="assets/screenshots/hc3_slide.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
+  <img src="assets/screenshots/hc3_removed.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
+</div>
 
 
 
