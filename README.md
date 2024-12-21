@@ -81,12 +81,13 @@ flutter run
 <table>
 
   <tr>
-    <td><img src="assets/screenshots/image_1.png" width=270 height=480></td>
-    <td><img src="assets/screenshots/image_2.png" width=270 height=480></td>
-    <td><img src="assets/screenshots/hc3_slide.png)" width=270 height=480></td>
+    <td><img src="assets/screenshots/image_1.png" width=300 height=500</td>
+    <td><img src="assets/screenshots/image_2.png" width=300 height=500></td>
+    
   </tr>
   <tr>
-    <td><img src="assets/screenshots/hc3_removed.png" width=270 height=480></td>
+    <td><img src="assets/screenshots/hc3_slide.png)" width=300 height=500></td>
+    <td><img src="assets/screenshots/hc3_removed.png" width=300 height=500></td>
    
   </tr>
  </table>
