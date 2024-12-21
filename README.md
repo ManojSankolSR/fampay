@@ -76,10 +76,10 @@ To run the app on an emulator or physical device, use the following command:
 flutter run
 ```
 ## Screenshots
-![App Screenshot](assets/images/screenshot/image_1.png)
-![App Screenshot](assets/images/screenshot/image_2.png)
-![App Screenshot](assets/images/screenshot/hc3_slide.png)
-![App Screenshot](assets/images/screenshot/hc3_removed.png)
+![App Screenshot](assets/screenshots/image_1.png)
+![App Screenshot](assets/screenshots/image_2.png)
+![App Screenshot](assets/screenshots/hc3_slide.png)
+![App Screenshot](assets/screenshots/hc3_removed.png)
 
 
 
