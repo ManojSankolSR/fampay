@@ -35,7 +35,7 @@ class _Hc3State extends ConsumerState<Hc3> with TickerProviderStateMixin {
 
     _slideAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: Offset(.5, 0.0),
+      end: Offset(.45, 0.0),
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOutCubic,
@@ -157,7 +157,7 @@ class _Hc3State extends ConsumerState<Hc3> with TickerProviderStateMixin {
                         Constants.getTextAlignFromString(formattedTitle.align),
                     style: TextStyle(
 
-                      decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
+                      // decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
                       
                       fontWeight: Constants.getFontWeightFromFamily(
                           formattedTitle.entities[i].fontFamily),
@@ -196,7 +196,7 @@ class _Hc3State extends ConsumerState<Hc3> with TickerProviderStateMixin {
 
   Widget _background(double height, String cardGroupId, String cardId) {
     return Container(
-      padding: EdgeInsets.all(30),
+      padding: EdgeInsets.all(28),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -70,7 +70,7 @@ class Hc1 extends StatelessWidget {
                                 textAlign: Constants.getTextAlignFromString(
                                     formattedTitle.align),
                                 style: TextStyle(
-                                     decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
+                                    //  decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
                                     fontWeight:
                                         Constants.getFontWeightFromFamily(
                                             formattedTitle

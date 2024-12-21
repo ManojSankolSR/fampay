@@ -66,7 +66,7 @@ class Hc6 extends StatelessWidget {
                                     formattedTitle.align),
                                 formattedTitle.entities[i].text!,
                                 style: TextStyle(
-                                     decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
+                                    //  decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
                                     fontWeight:
                                         Constants.getFontWeightFromFamily(
                                             formattedTitle
