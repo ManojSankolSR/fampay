@@ -80,19 +80,19 @@ flutter run
 
 
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: "1rem";">
 
   <!-- Image 1 -->
-  <img src="assets/screenshots/image_1.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin: 8px;"/>
+  <img src="assets/screenshots/image_1.png" style="object-fit: cover; max-width: 100%; margin-bottom: 1rem; flex-grow: 1;"/>
   
   <!-- Image 2 -->
-  <img src="assets/screenshots/image_2.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin: 8px;"/>
+  <img src="assets/screenshots/image_2.png" style="object-fit: cover; max-width: 100%; margin-bottom: 1rem; flex-grow: 1;"/>
   
   <!-- Image 3 -->
-  <img src="assets/screenshots/hc3_slide.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin: 8px;"/>
+  <img src="assets/screenshots/hc3_slide.png" style="object-fit: cover; max-width: 100%; margin-bottom: 1rem; flex-grow: 1;"/>
   
   <!-- Image 4 -->
-  <img src="assets/screenshots/hc3_removed.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin: 8px;"/>
+  <img src="assets/screenshots/hc3_removed.png" style="object-fit: cover; max-width: 100%; margin-bottom: 1rem; flex-grow: 1;"/>
   
 </div>
 
