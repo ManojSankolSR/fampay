@@ -78,12 +78,23 @@ flutter run
 ## Screenshots
 
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
-  <img src="assets/screenshots/image_1.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
-  <img src="assets/screenshots/image_2.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
-  <img src="assets/screenshots/hc3_slide.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
-  <img src="assets/screenshots/hc3_removed.png" width="300" height="600" style="object-fit: cover; max-width: 100%;"/>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16;">
+
+  <!-- Image 1 -->
+  <img src="assets/screenshots/image_1.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin-bottom: 16px;"/>
+  
+  <!-- Image 2 -->
+  <img src="assets/screenshots/image_2.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin-bottom: 16px;"/>
+  
+  <!-- Image 3 -->
+  <img src="assets/screenshots/hc3_slide.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin-bottom: 16px;"/>
+  
+  <!-- Image 4 -->
+  <img src="assets/screenshots/hc3_removed.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin-bottom: 16px;"/>
+  
 </div>
+
 
 
 
