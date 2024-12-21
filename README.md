@@ -79,7 +79,7 @@ flutter run
 
 
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
 
   <!-- Image 1 -->
   <img src="assets/screenshots/image_1.png" width="300" height="600" style="object-fit: cover; max-width: 100%; margin-bottom: 16px;"/>
