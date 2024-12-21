@@ -157,7 +157,7 @@ class _Hc3State extends ConsumerState<Hc3> with TickerProviderStateMixin {
                         Constants.getTextAlignFromString(formattedTitle.align),
                     style: TextStyle(
 
-                      // decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
+                      decoration: Constants.getTextDecorationFromStyle(formattedTitle.entities[i].fontStyle),
                       
                       fontWeight: Constants.getFontWeightFromFamily(
                           formattedTitle.entities[i].fontFamily),
