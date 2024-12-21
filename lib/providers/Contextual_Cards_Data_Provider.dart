@@ -12,25 +12,22 @@ part "Contextual_Cards_Data_Provider.g.dart";
 @riverpod
 class ContextualCards extends _$ContextualCards {
   Future<ApiResponse> fetchContextualCards() async {
-    print("API called");
-
     final response = await http.get(Uri.parse(
         "https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypage"));
     final body = response.body;
-    print("API called 1");
-    final decodedBody = json.decode(body);
 
-    print("API called 2");
+    final decodedBody = json.decode(body);
 
     ApiResponse ContextualCards = ApiResponse.fromJson(decodedBody[0]);
 
-    print("API called 4");
+    // Getting temprorary and Permenant deletd cards data from Hive
 
     final tempdeletedCards = HiveBoxes.getTempDeletedCards();
-
     final deletedCards = HiveBoxes.getDeletedCards();
 
     deletedCards.addAll(tempdeletedCards);
+
+    //Removig deleted cards from cardsGroups that we got from api
 
     for (var deletedCard in deletedCards) {
       final cardGroupId = deletedCard!['cardGroupId'];
