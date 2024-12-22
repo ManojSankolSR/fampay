@@ -2,7 +2,8 @@ import 'dart:ffi';
 
 import 'package:fampay/Hive_Boxes/HiveBoxes.dart';
 import 'package:fampay/global/constants.dart';
-import 'package:fampay/models/api_response.dart';
+import 'package:fampay/models/slug_item.dart';
+import 'package:fampay/models/slug_list.dart';
 import 'package:fampay/providers/Contextual_Cards_Data_Provider.dart';
 import 'package:fampay/widgets/hc1.dart';
 import 'package:fampay/widgets/hc3.dart';
@@ -16,19 +17,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
-  // Future<void> _refreshPage(WidgetRef ref) async {
-  //   final data = await ref.refresh(fetchContextualCardsProvider.future);
-  // }
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final api_response = ref.watch(contextualCardsProvider);
 
     return Scaffold(
-        appBar: AppBar(
-          
-          title: Row(
+        appBar: _appBar(context, ref),
+        body: api_response.when(
+            data: (data) => _data(data, ref), error: _error, loading: _loader)
+        );
+  }
 
+  PreferredSizeWidget _appBar(BuildContext context, WidgetRef ref) {
+    return AppBar(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -40,27 +44,14 @@ class HomeScreen extends ConsumerWidget {
               )
             ],
           ),
-          
           actions: [
-            IconButton(onPressed: () async{
-
-              HiveBoxes.removeAllDeletedCards(context: context,ref: ref);
-
-            }, icon: Icon(Icons.clear_all))
+            IconButton(
+                onPressed: () async {
+                  HiveBoxes.removeAllDeletedCards(context: context, ref: ref);
+                },
+                icon: Icon(Icons.clear_all))
           ],
-
           centerTitle: true,
-         
-        ),
-        body: 
-        switch (api_response) {
-          AsyncData(:final value) => _data(value, ref),
-          AsyncError(:final error) => _error(error),
-          _ => _loader()
-        }
-
-        // api_response.when(
-        //     data: (data) => _data(data, ref), error: _error, loading: _loader)
         );
   }
 
@@ -70,26 +61,13 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _error(Object error) {
+  Widget _error(Object error,StackTrace stackTrace) {
     return Center(
       child: Text("Some Erroe Occured"),
     );
   }
 
-  Widget _data(ApiResponse data, WidgetRef ref) {
-    final hc1CardGroupData =
-        data.cardGroups.firstWhere((e) => e.designType == "HC1");
-    final hc3CardGroupData =
-        data.cardGroups.firstWhere((e) => e.designType == "HC3");
-    final hc5CardGroupData =
-        data.cardGroups.firstWhere((e) => e.designType == "HC5");
-    final hc6CardGroupData =
-        data.cardGroups.firstWhere((e) => e.designType == "HC6");
-    final hc9CardGroupData =
-        data.cardGroups.firstWhere((e) => e.designType == "HC9");
-
-
-
+  Widget _data(SlugList data, WidgetRef ref) {
     return CustomScrollView(
       physics: AlwaysScrollableScrollPhysics(),
       slivers: [
@@ -99,31 +77,75 @@ class HomeScreen extends ConsumerWidget {
           },
         ),
         SliverPadding(
-          padding: EdgeInsets.symmetric(vertical: 30),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: 20,
-              children: [
-                Hc3(
-                  hc3CardGroupData: hc3CardGroupData,
-                ),
-                Hc6(
-                  hc6CardGroupData: hc6CardGroupData,
-                ),
-                Hc5(
-                  hc5CardGroupData: hc5CardGroupData,
-                ),
-                Hc9(
-                  hc9CardGroupData: hc9CardGroupData,
-                ),
-                Hc1(
-                  hc1CardGroupData: hc1CardGroupData,
-                ),
-              ],
-            ),
-          ),
-        )
+            padding: EdgeInsets.symmetric(vertical: 30),
+            sliver: SliverList.builder(
+              itemCount: data.responses.length,
+              itemBuilder: (context, index) {
+                final currentSlug = data.responses[index];
+
+                final hc1CardGroupData = currentSlug.cardGroups
+                    .firstWhere((e) => e.designType == "HC1");
+                final hc3CardGroupData = currentSlug.cardGroups
+                    .firstWhere((e) => e.designType == "HC3");
+                final hc5CardGroupData = currentSlug.cardGroups
+                    .firstWhere((e) => e.designType == "HC5");
+                final hc6CardGroupData = currentSlug.cardGroups
+                    .firstWhere((e) => e.designType == "HC6");
+                final hc9CardGroupData = currentSlug.cardGroups
+                    .firstWhere((e) => e.designType == "HC9");
+
+                final slugId = currentSlug.id;
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 20,
+                  children: [
+                    Hc3(
+                      slugId: slugId,
+                      hc3CardGroupData: hc3CardGroupData,
+                    ),
+                    Hc6(
+                      hc6CardGroupData: hc6CardGroupData,
+                    ),
+                    Hc5(
+                      hc5CardGroupData: hc5CardGroupData,
+                    ),
+                    Hc9(
+                      hc9CardGroupData: hc9CardGroupData,
+                    ),
+                    Hc1(
+                      hc1CardGroupData: hc1CardGroupData,
+                    ),
+                  ],
+                );
+              },
+            )
+
+            // SliverToBoxAdapter(
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     spacing: 20,
+            //     children: [
+            //       Hc3(
+            //         slugId: slugId,
+            //         hc3CardGroupData: hc3CardGroupData,
+            //       ),
+            //       Hc6(
+            //         hc6CardGroupData: hc6CardGroupData,
+            //       ),
+            //       Hc5(
+            //         hc5CardGroupData: hc5CardGroupData,
+            //       ),
+            //       Hc9(
+            //         hc9CardGroupData: hc9CardGroupData,
+            //       ),
+            //       Hc1(
+            //         hc1CardGroupData: hc1CardGroupData,
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            )
       ],
     );
   }

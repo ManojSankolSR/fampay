@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:fampay/Hive_Boxes/HiveBoxes.dart';
-import 'package:fampay/models/api_response.dart';
+import 'package:fampay/models/deleted_card.dart';
+import 'package:fampay/models/slug_item.dart';
+import 'package:fampay/models/slug_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,14 +13,14 @@ part "Contextual_Cards_Data_Provider.g.dart";
 
 @riverpod
 class ContextualCards extends _$ContextualCards {
-  Future<ApiResponse> fetchContextualCards() async {
+  Future<SlugList> fetchContextualCards() async {
     final response = await http.get(Uri.parse(
         "https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypage"));
     final body = response.body;
 
     final decodedBody = json.decode(body);
 
-    ApiResponse ContextualCards = ApiResponse.fromJson(decodedBody[0]);
+    SlugList slugList = SlugList.fromJson(decodedBody);
 
     // Getting temprorary and Permenant deletd cards data from Hive
 
@@ -27,74 +29,84 @@ class ContextualCards extends _$ContextualCards {
 
     deletedCards.addAll(tempdeletedCards);
 
-    //Removig deleted cards from cardsGroups that we got from api
+    //Removig deleted cards from sluglist that we got from api
+
+    print("delobs $deletedCards");
 
     for (var deletedCard in deletedCards) {
-      final cardGroupId = deletedCard!['cardGroupId'];
-      final cardId = deletedCard['cardId'];
+      final cardGroupId = deletedCard.cardGroupId;
+      final cardId = deletedCard.cardId;
+      final slugId = deletedCard.slugId;
 
-      final updatedCardGroups = ContextualCards.cardGroups.map((cardGroup) {
-        if (cardGroup.id == cardGroupId) {
-          final updatedCards = cardGroup.cards.where((card) {
-            return card.id == cardId;
+      final updatedSlugList = slugList.responses.map((e) {
+        //iterating over slugs to find slug with same slugId that we got from deleted cards
+        if (e.id == slugId) {
+
+          //iterating over cardGroups to find cardGroup with same cardGroupId that we got from deleted cards
+          final updatedSlugList = e.cardGroups.map((cardGroup) {
+            if (cardGroup.id == cardGroupId) {
+
+              //iterating over cards to find and remove specific card with same cardId that we got from deleted cards
+              final updatedCards = cardGroup.cards.where((card) {
+                return card.id != cardId;
+              }).toList();
+
+              return cardGroup.copyWith(updatedCards: updatedCards);
+            }
+            return cardGroup;
           }).toList();
 
-          final updatedGroup = cardGroup.copyWith(updatedCards: updatedCards);
-
-          return updatedGroup;
+          return e.copyWith(cardGroups: updatedSlugList);
         }
-
-        return cardGroup;
+        return e;
       }).toList();
 
-      ContextualCards = ContextualCards.copyWith(cardGroups: updatedCardGroups);
+      slugList = slugList.copyWith(responses: updatedSlugList);
     }
 
-    return ContextualCards;
+    return slugList;
   }
 
   @override
-  FutureOr<ApiResponse> build() async {
+  FutureOr<SlugList> build() async {
     return fetchContextualCards();
   }
 
-  Future deleteCardTemproarily(
-      String cardGroupId, String cardId, bool fromDelPermanent) async {
-    final data = state.asData?.value;
+  Future deleteCardTemproarily({required DeletedCard deletedCard,required bool fromDelPermanent}) async {
+    SlugList? slugList = state.asData?.value;
 
-    if (data == null) {
+    if (slugList == null) {
       return;
     }
 
-    final updatedCardGroups = data.cardGroups.map((cardGroup) {
-      if (cardGroup.id == cardGroupId) {
-        final updatedCards =
-            cardGroup.cards.where((card) => card.id != cardId).toList();
+    final updatedSlugList = slugList.responses.map((e) {
+      if (e.id == deletedCard.slugId) {
+        final updatedSlugList = e.cardGroups.map((cardGroup) {
+          if (cardGroup.id == deletedCard.cardGroupId) {
+            final updatedCards = cardGroup.cards.where((card) {
+              return card.id != deletedCard.cardId;
+            }).toList();
 
-        final a = cardGroup.copyWith(updatedCards: updatedCards);
+            return cardGroup.copyWith(updatedCards: updatedCards);
+          }
+          return cardGroup;
+        }).toList();
 
-        return a;
+        return e.copyWith(cardGroups: updatedSlugList);
       }
-
-      return cardGroup;
+      return e;
     }).toList();
 
     if (!fromDelPermanent) {
-      HiveBoxes.addTempDeletedCard(cardGroupId, cardId);
+      HiveBoxes.addTempDeletedCard(deletedCard: deletedCard);
     }
 
-    state = AsyncValue.data(data.copyWith(cardGroups: updatedCardGroups));  
+    state = AsyncValue.data(slugList.copyWith(responses: updatedSlugList));
   }
 
-  Future deleteCardPermanently(String cardGroupId, String cardId) async {
-    final data = state.asData?.value;
+  void deleteCardPermanently({required DeletedCard deletedCard,}) {
+    deleteCardTemproarily(deletedCard: deletedCard,fromDelPermanent: true);
 
-    if (data == null) {
-      return;
-    }
-
-    deleteCardTemproarily(cardGroupId, cardId, true);
-
-    HiveBoxes.addDeletedCard(cardGroupId, cardId);
+    HiveBoxes.addDeletedCard(deletedCard: deletedCard);
   }
 }

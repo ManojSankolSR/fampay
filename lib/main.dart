@@ -1,6 +1,5 @@
 import 'package:fampay/Hive_Boxes/HiveBoxes.dart';
 import 'package:fampay/global/constants.dart';
-import 'package:fampay/models/DeltedItems.dart';
 import 'package:fampay/screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

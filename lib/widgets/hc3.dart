@@ -4,6 +4,7 @@ import 'package:fampay/global/constants.dart';
 import 'package:fampay/models/call_to_action.dart' as famCards;
 import 'package:fampay/models/card.dart' as famCards;
 import 'package:fampay/models/card_group.dart' as famCards;
+import 'package:fampay/models/deleted_card.dart';
 import 'package:fampay/models/formatted_text.dart' as famCards;
 import 'package:fampay/providers/Contextual_Cards_Data_Provider.dart';
 import 'package:fampay/widgets/custom_text_icon_button.dart';
@@ -13,7 +14,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class Hc3 extends ConsumerStatefulWidget {
   final famCards.CardGroup hc3CardGroupData;
 
-  const Hc3({super.key, required this.hc3CardGroupData});
+  final String slugId ;
+
+  const Hc3( {super.key, required this.hc3CardGroupData, required this.slugId});
 
   @override
   _Hc3State createState() => _Hc3State();
@@ -195,6 +198,7 @@ class _Hc3State extends ConsumerState<Hc3> with TickerProviderStateMixin {
   }
 
   Widget _background(double height, String cardGroupId, String cardId) {
+    final DeletedCard deletedCard=DeletedCard(cardGroupId: cardGroupId, cardId: cardId, slugId: widget.slugId);
     return Container(
       padding: EdgeInsets.all(28),
       child: Column(
@@ -204,13 +208,13 @@ class _Hc3State extends ConsumerState<Hc3> with TickerProviderStateMixin {
           CustomIconTextButton(icon: "assets/images/bell_icon.png", title: "remind later", color: Theme.of(context).scaffoldBackgroundColor, onpress: () {
             ref
                 .read(contextualCardsProvider.notifier)
-                .deleteCardPermanently(cardGroupId, cardId);
+                .deleteCardPermanently(deletedCard: deletedCard);
           }),
           SizedBox(height: height * .08),
           CustomIconTextButton(icon: "assets/images/dismiss_icon.png", title: "dismiss now", color: Theme.of(context).scaffoldBackgroundColor, onpress: () {
             ref
                 .read(contextualCardsProvider.notifier)
-                .deleteCardTemproarily(cardGroupId, cardId, false);
+                .deleteCardTemproarily(deletedCard: deletedCard, fromDelPermanent: false);
           }),
         ],
       ),
