@@ -54,7 +54,9 @@ This Flutter project is a plug-and-play container that renders a list of context
 │   │   ├── hc9.dart                     # Widget for rendering HC9 (Dynamic Width Card) design
 
 
+
 ```
+
 
 
 ## Installation
@@ -87,6 +89,17 @@ flutter run
   <img src="assets/screenshots/hc3_slide.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
   <img src="assets/screenshots/hc3_removed.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
 </div>
+
+
+
+## APK Download
+
+You can download the APK file from the following link:
+
+[Download the APK here](https://drive.google.com/drive/folders/1UTCirPm-WxoUiGuCV-FYvGpYTr5LPZa-?usp=share_link)
+
+
+
 
 
 
