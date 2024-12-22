@@ -1,4 +1,4 @@
-# Contextual Cards Flutter
+# Contextual Cards (Fam)
 
 This Flutter project is a plug-and-play container that renders a list of contextual cards dynamically fetched from an API. The container can be added to any screen/widget and functions independently, as per the requirements.
 
