@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
 
-part 'deleted_card.g.dart'; // Generated part file for Hive adapter
+part 'deleted_card.g.dart'; 
 
-@HiveType(typeId: 1) // Ensure a unique typeId for this class
+@HiveType(typeId: 1) 
 class DeletedCard extends HiveObject {
   @HiveField(0)
   final String cardGroupId;

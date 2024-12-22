@@ -29,15 +29,17 @@ This Flutter project is a plug-and-play container that renders a list of context
 │   ├── global/                           # Global configurations and constants
 │   │   ├── constants.dart                # Defines app-wide constants like API URLs, keys, etc.
 │   ├── models/                           # Data models to represent API response structures
-│   │   ├── DeltedItems.dart              # Stores data for items marked as deleted (if applicable)
-│   │   ├── api_response.dart            # Model to parse the API response and handle data
 │   │   ├── call_to_action.dart          # Represents the call-to-action button details
 │   │   ├── card.dart                    # Model for each individual card (title, description, etc.)
 │   │   ├── card_group.dart              # Represents a group of cards (card groups)
-│   │   ├── card_image.dart              # Represents the image data Of Card (image URL, asset info)
+│   │   ├── card_image.dart              # Represents the image data of a card (image URL, asset info)
+│   │   ├── deleted_card.dart            # Represents data of Deleted cards
+│   │   ├── deleted_card.g.dart          # Generated file for handling deleted cards (automatically created)
 │   │   ├── entity.dart                  # Represents entities in formatted text (like hyperlinks, bold text)
 │   │   ├── formatted_text.dart          # Represents formatted text with placeholder entities
 │   │   ├── gradient_data.dart           # Represents gradient data (colors, angles, etc.)
+│   │   ├── slug_item.dart               # Represents a single slug item in a list
+│   │   ├── slug_list.dart               # Represents a list of slug items
 │   ├── providers/                       # State management providers
 │   │   ├── Contextual_Cards_Data_Provider.dart  # Provider for managing contextual cards data
 │   │   ├── Contextual_Cards_Data_Provider.g.dart # Generated file for provider (automatically created)
@@ -50,6 +52,7 @@ This Flutter project is a plug-and-play container that renders a list of context
 │   │   ├── hc5.dart                     # Widget for rendering HC5 (Image Card) design
 │   │   ├── hc6.dart                     # Widget for rendering HC6 (Small Card with Arrow) design
 │   │   ├── hc9.dart                     # Widget for rendering HC9 (Dynamic Width Card) design
+
 
 ```
 
@@ -75,10 +78,8 @@ To run the app on an emulator or physical device, use the following command:
 ```bash
 flutter run
 ```
+
 ## Screenshots
-
-
-
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40; justify-items: center;">
   <img src="assets/screenshots/image_1.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
