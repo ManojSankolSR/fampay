@@ -62,8 +62,8 @@ This Flutter project is a plug-and-play container that renders a list of context
 
 
 ```bash
-git clone https://github.com/yourusername/contextual-cards-flutter.git
-cd contextual-cards-flutter
+git https://github.com/ManojSankolSR/fampay.git
+cd fampay
 ```
 
 ### 2. Install Dependencies
@@ -81,7 +81,7 @@ flutter run
 
 ## Screenshots
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40; justify-items: center;">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; justify-items: center;">
   <img src="assets/screenshots/image_1.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
   <img src="assets/screenshots/image_2.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
   <img src="assets/screenshots/hc3_slide.png" width="290" height="600" style="object-fit: cover; max-width: 100%;"/>
