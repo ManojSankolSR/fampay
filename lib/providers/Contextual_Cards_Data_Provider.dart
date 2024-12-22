@@ -83,7 +83,7 @@ class ContextualCards extends _$ContextualCards {
       HiveBoxes.addTempDeletedCard(cardGroupId, cardId);
     }
 
-    state = AsyncValue.data(data.copyWith(cardGroups: updatedCardGroups));
+    state = AsyncValue.data(data.copyWith(cardGroups: updatedCardGroups));  
   }
 
   Future deleteCardPermanently(String cardGroupId, String cardId) async {

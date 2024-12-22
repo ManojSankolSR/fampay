@@ -88,7 +88,7 @@ class HomeScreen extends ConsumerWidget {
     final hc9CardGroupData =
         data.cardGroups.firstWhere((e) => e.designType == "HC9");
 
-    print("rebuilt ${hc3CardGroupData.toJson()}");
+
 
     return CustomScrollView(
       physics: AlwaysScrollableScrollPhysics(),
