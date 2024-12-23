@@ -33,7 +33,7 @@ class Hc5 extends StatelessWidget {
               aspectRatio: card.bgImage!.aspectRatio!,
 
               child:
-               InkWell(
+               GestureDetector(
                 onTap: () {
                   Constants.launchUrl(card.url, context);
                 },

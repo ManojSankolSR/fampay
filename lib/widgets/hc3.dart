@@ -9,6 +9,7 @@ import 'package:fampay/models/formatted_text.dart' as famCards;
 import 'package:fampay/providers/Contextual_Cards_Data_Provider.dart';
 import 'package:fampay/widgets/custom_text_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Hc3 extends ConsumerStatefulWidget {
@@ -87,6 +88,9 @@ class _Hc3State extends ConsumerState<Hc3> with TickerProviderStateMixin {
               });
             },
             onLongPress: () {
+              HapticFeedback.mediumImpact();
+
+
               if (_isForegroundVisible) {
                 _animationController.forward();
               } else {
