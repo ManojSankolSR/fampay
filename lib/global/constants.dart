@@ -67,7 +67,7 @@ static TextDecoration getTextDecorationFromStyle(String? fontStyle) {
         title: Text(title),
         leading: Icon(icon),
       ),
-    ).;
+    );
   }
 
   static Color hexToColorWithAlpha(String hex) {
